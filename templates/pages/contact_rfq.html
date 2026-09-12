@@ -74,46 +74,71 @@
 
                 <form method="post" action="{% url 'rfq:submit' %}" enctype="multipart/form-data" class="space-y-6">
                     {% csrf_token %}
+                    <input type="hidden" name="source_page" value="contact">
 
                     <div class="hidden" aria-hidden="true">
                         {{ form.website_check }}
                     </div>
 
+                    {% if form.non_field_errors %}
+                    <div class="p-3 bg-rose-950/40 border border-rose-800 rounded text-rose-300 text-xs font-mono">
+                        {{ form.non_field_errors.0 }}
+                    </div>
+                    {% endif %}
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Contact Name <span class="text-rose-400">*</span></label>
                             {{ form.name }}
+                            {% if form.name.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.name.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
                             <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Company Name <span class="text-rose-400">*</span></label>
                             {{ form.company }}
+                            {% if form.company.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.company.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
                             <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Business Email <span class="text-rose-400">*</span></label>
                             {{ form.email }}
+                            {% if form.email.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.email.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
-                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Destination Country <span class="text-rose-400">*</span></label>
+                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Phone / WhatsApp (Optional)</label>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.phone.errors.0 }}</p>{% endif %}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Company Country <span class="text-rose-400">*</span></label>
+                            {{ form.country }}
+                            {% if form.country.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.country.errors.0 }}</p>{% endif %}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Destination Country / Port</label>
                             {{ form.delivery_country }}
+                            {% if form.delivery_country.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.delivery_country.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
                             <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Product of Interest</label>
                             {{ form.product }}
+                            {% if form.product.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.product.errors.0 }}</p>{% endif %}
                         </div>
                         <div>
                             <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Required Quantity (MOQ: 500 kg) <span class="text-rose-400">*</span></label>
                             {{ form.quantity }}
+                            {% if form.quantity.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.quantity.errors.0 }}</p>{% endif %}
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Application / Intended Use <span class="text-rose-400">*</span></label>
                         {{ form.application }}
+                        {% if form.application.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.application.errors.0 }}</p>{% endif %}
                     </div>
 
                     <div>
                         <label class="block text-xs font-mono uppercase text-slate-300 mb-1">Technical Specifications / Tolerances (Optional)</label>
                         {{ form.technical_requirements }}
+                        {% if form.technical_requirements.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.technical_requirements.errors.0 }}</p>{% endif %}
                     </div>
 
                     <div class="p-4 rounded bg-emerald-950/30 border border-emerald-800/50 flex items-start space-x-3">
@@ -129,9 +154,12 @@
                         <div class="mt-0.5">
                             {{ form.consent }}
                         </div>
-                        <label for="{{ form.consent.id_for_label }}" class="text-xs font-mono text-slate-300 cursor-pointer">
-                            I confirm this is an authentic commercial inquiry and consent to contact regarding this B2B requirement. <span class="text-rose-400">*</span>
-                        </label>
+                        <div>
+                            <label for="{{ form.consent.id_for_label }}" class="text-xs font-mono text-slate-300 cursor-pointer">
+                                I confirm this is an authentic commercial inquiry and consent to contact regarding this B2B requirement. <span class="text-rose-400">*</span>
+                            </label>
+                            {% if form.consent.errors %}<p class="text-xs text-rose-400 mt-1 font-mono">{{ form.consent.errors.0 }}</p>{% endif %}
+                        </div>
                     </div>
 
                     <button type="submit" class="w-full metallic-silver-btn py-4 rounded text-xs uppercase tracking-widest font-bold shadow-lg">

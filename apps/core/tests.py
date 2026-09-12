@@ -99,3 +99,60 @@ class StellarShiperHandoffComplianceTests(TestCase):
         self.assertIsNotNone(rfq)
         self.assertTrue(rfq.sample_request)
         self.assertEqual(rfq.status, 'NEW')
+
+    def test_contact_form_submission_with_single_country_auto_sync(self):
+        # Scenario where user fills delivery_country only (as was in contact form)
+        data = {
+            'name': 'Hans Schmidt',
+            'company': 'Bavaria Yarns GmbH',
+            'email': 'schmidt@bavariayarns.de',
+            'delivery_country': 'Germany',
+            'quantity': '500 kg',
+            'application': 'Textile spinning',
+            'consent': True,
+            'source_page': 'contact',
+            'website_check': ''
+        }
+        response = self.client.post(reverse('rfq:submit'), data=data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('rfq:success'))
+
+        rfq = RFQ.objects.filter(email='schmidt@bavariayarns.de').first()
+        self.assertIsNotNone(rfq)
+        self.assertEqual(rfq.country, 'Germany')
+        self.assertEqual(rfq.delivery_country, 'Germany')
+
+    def test_contact_form_invalid_stays_on_contact_page(self):
+        # Missing required fields from contact page should stay on contact page
+        data = {
+            'name': 'Hans Schmidt',
+            'source_page': 'contact',
+            'website_check': ''
+        }
+        response = self.client.post(reverse('rfq:submit'), data=data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'pages/contact_rfq.html')
+        self.assertContains(response, 'Please correct the highlighted errors')
+
+    def test_contact_form_submission_with_buyer_country_auto_sync(self):
+        # Scenario where user fills country only
+        data = {
+            'name': 'Klaus Weber',
+            'company': 'Stuttgart Fibers KG',
+            'email': 'klaus@stuttgartfibers.de',
+            'country': 'Germany',
+            'quantity': '20 MT',
+            'application': 'Automotive door trim',
+            'consent': True,
+            'source_page': 'contact',
+            'website_check': ''
+        }
+        response = self.client.post(reverse('rfq:submit'), data=data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('rfq:success'))
+
+        rfq = RFQ.objects.filter(email='klaus@stuttgartfibers.de').first()
+        self.assertIsNotNone(rfq)
+        self.assertEqual(rfq.country, 'Germany')
+        self.assertEqual(rfq.delivery_country, 'Germany')
+        self.assertEqual(rfq.incoterms, 'CIF')

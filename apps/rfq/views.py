@@ -1,4 +1,4 @@
-﻿from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, TemplateView
 from django.contrib import messages
 from .models import RFQ
@@ -41,6 +41,14 @@ class RFQSubmitView(View):
         
         # If invalid
         messages.error(request, 'Please correct the highlighted errors in the form before submitting.')
+        source_page = request.POST.get('source_page')
+        if source_page == 'contact':
+            return render(request, 'pages/contact_rfq.html', {
+                'form': form,
+                'meta_title': 'Contact Export Desk & RFQ | STELLAR SHIPERS',
+                'meta_desc': 'Directly contact our international trade team or submit a technical Request for Quotation (RFQ). Fast response within 24-48 business hours.'
+            })
+
         return render(request, self.template_name, {
             'form': form,
             'meta_title': 'Request for Quotation (RFQ) | STELLAR SHIPERS',

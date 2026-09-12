@@ -1,4 +1,4 @@
-﻿from django import forms
+from django import forms
 from .models import RFQ
 from apps.products.models import Product
 
@@ -91,12 +91,33 @@ class RFQForm(forms.ModelForm):
         self.fields['product'].queryset = Product.objects.filter(is_active=True)
         self.fields['product'].empty_label = "Select from Catalog (or specify below)"
         self.fields['consent'].required = True
+        # Allow flexible submission from contact forms: country, delivery_country and incoterms auto-sync
+        self.fields['country'].required = False
+        self.fields['delivery_country'].required = False
+        self.fields['incoterms'].required = False
 
     def clean_website_check(self):
         val = self.cleaned_data.get('website_check')
         if val:
             raise forms.ValidationError("Automated submission detected.")
         return val
+
+    def clean(self):
+        cleaned_data = super().clean()
+        country = (cleaned_data.get('country') or '').strip()
+        delivery_country = (cleaned_data.get('delivery_country') or '').strip()
+
+        if not country and not delivery_country:
+            self.add_error('country', 'Please specify your country or destination country.')
+        elif country and not delivery_country:
+            cleaned_data['delivery_country'] = country
+        elif delivery_country and not country:
+            cleaned_data['country'] = delivery_country
+
+        if not cleaned_data.get('incoterms'):
+            cleaned_data['incoterms'] = 'CIF'
+
+        return cleaned_data
 
     def clean_technical_file(self):
         file = self.cleaned_data.get('technical_file')
@@ -110,3 +131,4 @@ class RFQForm(forms.ModelForm):
             if ext not in valid_exts:
                 raise forms.ValidationError("Supported formats: PDF, DOC, DOCX, TXT, PNG, JPG.")
         return file
+
