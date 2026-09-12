@@ -1,0 +1,204 @@
+﻿detail_content = '''{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} | Sourcing & Specifications - {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<div class="bg-[#1E2328] border-b border-[#353B44] py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center space-x-2 text-xs font-mono text-slate-400 mb-4">
+            <a href="{% url 'pages:home' %}" class="hover:text-white">Home</a>
+            <span>/</span>
+            <a href="{% url 'products:list' %}" class="hover:text-white">Products</a>
+            <span>/</span>
+            <span class="text-white">{{ product.name }}</span>
+        </nav>
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-2 max-w-3xl">
+                <div class="flex items-center space-x-3">
+                    <span class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">
+                        Natural Textile Raw Material
+                    </span>
+                    <span class="badge-stated px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold">
+                        G9 GRAND NAINE &bull; JALGAON ORIGIN
+                    </span>
+                </div>
+                <h1 class="text-2xl sm:text-4xl font-bold text-white tracking-tight uppercase">
+                    {{ product.name }}
+                </h1>
+                <p class="text-slate-300 text-sm font-sans leading-relaxed">
+                    Natural, mechanically extracted and dried banana fiber sourced from G9 banana pseudostems, supplied in cleaned/combed fiber bundles for textile and natural-fiber applications.
+                </p>
+            </div>
+
+            <div class="shrink-0 flex items-center space-x-3">
+                <a href="{% url 'rfq:submit' %}?product={{ product.slug }}" class="metallic-silver-btn px-6 py-3 rounded text-xs uppercase tracking-widest font-bold">
+                    Request Quote
+                </a>
+                <a href="{% url 'rfq:submit' %}?product={{ product.slug }}&sample=1" class="px-5 py-3 rounded text-xs uppercase tracking-widest font-semibold border border-[#4A5563] bg-[#252A30] hover:bg-[#2F363F] text-slate-200 transition-colors">
+                    Request Sample
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-[#161A1E] py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <!-- Left 8 Cols: Product Specification Details (Page 5) -->
+            <div class="lg:col-span-8 space-y-10">
+                
+                <!-- Specification Integrity Notice (Page 5) -->
+                <div class="p-6 rounded-xl bg-[#1E2328] border border-[#353B44] space-y-3">
+                    <div class="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-amber-300">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Specification Integrity Standard (Page 5)</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-mono">
+                        Product pages visually distinguish verified/tested specifications from supplier-provided or provisional information. In strict accordance with our policy: <strong>We do not present untested numbers as certified technical data, nor do we publish generic internet values.</strong>
+                    </p>
+                </div>
+
+                <!-- Parameters Table Strictly from Page 5 -->
+                <div class="bg-[#1E2328] border border-[#353B44] rounded-xl overflow-hidden">
+                    <div class="p-5 bg-[#1B2025] border-b border-[#353B44] flex items-center justify-between">
+                        <h2 class="text-sm font-bold text-white uppercase font-mono tracking-wider">Product Technical Parameters</h2>
+                        <span class="text-xs text-[#9AA0A6] font-mono">Status & Disclosures</span>
+                    </div>
+
+                    <div class="divide-y divide-[#2D333B] text-xs font-mono">
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
+                            <span class="text-white font-semibold">Banana Variety</span>
+                            <span class="text-slate-300">G9 (commonly associated with Grand Naine)</span>
+                            <span class="text-[11px] text-slate-400 uppercase">Supplier-stated</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
+                            <span class="text-white font-semibold">Raw Material Source</span>
+                            <span class="text-slate-300">Musa plant pseudostems</span>
+                            <span class="text-[11px] text-emerald-400 font-semibold uppercase">Confirmed</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
+                            <span class="text-white font-semibold">Extraction Method</span>
+                            <span class="text-slate-300">Mechanical decortication</span>
+                            <span class="text-[11px] text-emerald-400 font-semibold uppercase">Confirmed</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
+                            <span class="text-white font-semibold">Post-Extraction Processing</span>
+                            <span class="text-slate-300">Drying only</span>
+                            <span class="text-[11px] text-slate-400 uppercase">Supplier-stated</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
+                            <span class="text-white font-semibold">Chemical Treatment</span>
+                            <span class="text-slate-300">Supplier states no chemical treatment / 100% natural</span>
+                            <span class="text-[11px] text-slate-400 uppercase">Supplier-stated</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
+                            <span class="text-white font-semibold">Typical Fiber Length</span>
+                            <span class="text-slate-300">Approx. 4–5 ft</span>
+                            <span class="text-[11px] text-slate-400 uppercase">Supplier-stated</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
+                            <span class="text-white font-semibold">Visual Colour</span>
+                            <span class="text-slate-300">Golden</span>
+                            <span class="text-[11px] text-slate-400 uppercase">Visually apparent</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors bg-amber-950/20">
+                            <span class="text-white font-semibold">Fineness / Diameter</span>
+                            <span class="text-amber-200">No unverified number published; test-measured per buyer specification</span>
+                            <span class="text-[11px] text-amber-400 uppercase font-semibold">Testing on-demand</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors bg-amber-950/20">
+                            <span class="text-white font-semibold">Tensile Strength</span>
+                            <span class="text-amber-200">No product-specific test data yet; no generic internet claims</span>
+                            <span class="text-[11px] text-amber-400 uppercase font-semibold">Testing on-demand</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors bg-amber-950/20">
+                            <span class="text-white font-semibold">Moisture Content</span>
+                            <span class="text-amber-200">Requires accredited laboratory testing before export</span>
+                            <span class="text-[11px] text-amber-400 uppercase font-semibold">Requires testing</span>
+                        </div>
+                        <div class="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-1 hover:bg-[#22272E] transition-colors">
+                            <span class="text-white font-semibold">Batch Consistency</span>
+                            <span class="text-slate-300">Natural variation expected; QC tolerances defined per contract</span>
+                            <span class="text-[11px] text-slate-400 uppercase">Transparent</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Potential Applications (Page 5) -->
+                <div class="p-6 rounded-xl bg-[#1E2328] border border-[#353B44] space-y-4">
+                    <h3 class="text-xs font-mono uppercase tracking-wider text-[#9AA0A6]">Potential Applications / Uses (Page 5)</h3>
+                    <p class="text-xs text-slate-400 font-mono">
+                        These are presented as potential applications, not guarantees. Final application claims should be tied to test results and buyer requirements.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-slate-200">
+                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">&bull; Natural-fiber textile development</div>
+                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">&bull; Blended yarn / textile development where technically suitable</div>
+                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">&bull; Woven or nonwoven material development</div>
+                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">&bull; Home-textile and furnishing applications</div>
+                        <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B] sm:col-span-2">&bull; Craft, specialty and other natural-fiber applications</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right 4 Cols: Sourcing & Commercial Enquiry Card (Page 4 & 15) -->
+            <div class="lg:col-span-4 space-y-6">
+                <div class="p-6 rounded-xl bg-[#1E2328] border border-[#353B44] space-y-6 shadow-xl sticky top-28">
+                    <div class="border-b border-[#353B44] pb-4">
+                        <span class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">Commercial Summary</span>
+                        <h3 class="text-base font-bold text-white uppercase mt-1">Sourcing Parameters</h3>
+                    </div>
+
+                    <div class="space-y-3 text-xs font-mono">
+                        <div class="flex justify-between py-1 border-b border-[#2D333B]">
+                            <span class="text-slate-400">Supplier Location:</span>
+                            <span class="text-white font-semibold">Jalgaon, Maharashtra, India</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b border-[#2D333B]">
+                            <span class="text-slate-400">Supplier MOQ:</span>
+                            <span class="text-white font-semibold">500 kg</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b border-[#2D333B]">
+                            <span class="text-slate-400">Stated Capacity:</span>
+                            <span class="text-white">5–10 MT / month (expandable)</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b border-[#2D333B]">
+                            <span class="text-slate-400">Packaging:</span>
+                            <span class="text-white">Polythene / export bags</span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span class="text-slate-400">Target Buyer Market:</span>
+                            <span class="text-white">Europe (Germany, France) & Global</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 space-y-2">
+                        <a href="{% url 'rfq:submit' %}?product={{ product.slug }}" class="w-full block text-center metallic-silver-btn py-3.5 rounded text-xs uppercase tracking-widest font-bold">
+                            Request Commercial Quote
+                        </a>
+                        <a href="{% url 'rfq:submit' %}?product={{ product.slug }}&sample=1" class="w-full block text-center border border-[#4A5563] bg-[#161A1E] hover:bg-[#252A30] text-slate-200 py-3 rounded text-xs uppercase tracking-wider font-semibold transition-colors">
+                            Request Physical Sample
+                        </a>
+                    </div>
+
+                    <div class="pt-2 text-[11px] font-mono text-slate-400 space-y-1 border-t border-[#2D333B]">
+                        <div>&bull; Direct B2B commercial evaluation</div>
+                        <div>&bull; Sample charges/freight quoted clearly</div>
+                        <div>&bull; Responsible export documentation</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+'''
+
+with open('templates/products/product_detail.html', 'w', encoding='utf-8') as f:
+    f.write(detail_content.strip() + '\n')
+print('product_detail.html updated')

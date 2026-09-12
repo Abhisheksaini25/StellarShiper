@@ -1,0 +1,134 @@
+﻿about_content = '''{% extends 'base.html' %}
+
+{% block title %}About Us | Sourcing & Export Coordination - {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<div class="bg-[#1E2328] border-b border-[#353B44] py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl space-y-4">
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>Company Story & Operating Philosophy</span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight uppercase">
+                Bridging Indian Production with Global B2B Markets
+            </h1>
+            <p class="text-slate-300 text-base font-mono">
+                Indian sourcing. International standards. Responsible export coordination.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="bg-[#161A1E] py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        
+        <!-- Suggested About Us Copy (Page 3) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <div class="lg:col-span-7 space-y-6">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6]">Our Founding Belief</h2>
+                <h3 class="text-2xl font-bold text-white leading-tight">
+                    Connecting Capable Indian Producers with International B2B Buyers.
+                </h3>
+                <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+                    <p>
+                        STELLAR SHIPERS was built around a simple belief: capable Indian producers should have better access to international markets, and global buyers should have dependable partners who can bridge sourcing and execution.
+                    </p>
+                    <p>
+                        We work to connect carefully selected Indian production capabilities with international B2B buyers. Our role goes beyond arranging a product. We coordinate sourcing, review product quality, communicate requirements, support reasonable customization and coordinate the export process.
+                    </p>
+                    <p class="text-[#9AA0A6] font-mono text-sm">
+                        Our long-term objective is to build a trusted Indian export house known for responsible sourcing, premium value and international professionalism.
+                    </p>
+                </div>
+
+                <div class="pt-2">
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Core Operating Promise:</h4>
+                    <p class="text-white font-medium text-base p-4 bg-[#1E2328] rounded border border-[#353B44]">
+                        &ldquo;Trust before transaction. The buyer should feel that STELLAR SHIPERS is taking responsibility for making the transaction work.&rdquo;
+                    </p>
+                </div>
+            </div>
+
+            <!-- Operating Profile & Facilities Transparency (Page 2 & 4) -->
+            <div class="lg:col-span-5 bg-[#1E2328] border border-[#353B44] rounded-xl p-8 space-y-6 shadow-xl">
+                <h4 class="text-xs font-mono uppercase tracking-wider text-[#9AA0A6]">Business Profile & Positioning</h4>
+                <div class="space-y-4 text-xs font-mono text-slate-300">
+                    <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">
+                        <span class="text-slate-400 block mb-1 uppercase">Operating Entity:</span>
+                        <span class="text-white font-semibold">STELLAR SHIPERS</span>
+                    </div>
+                    <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">
+                        <span class="text-slate-400 block mb-1 uppercase">Business Model:</span>
+                        <span class="text-white font-semibold">Buy & Resell / Sourcing + Export Coordination</span>
+                    </div>
+                    <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">
+                        <span class="text-slate-400 block mb-1 uppercase">Production Facilities / Infrastructure:</span>
+                        <span class="text-slate-200 font-sans text-xs">
+                            Supplier production is external. Current business model is sourcing + quality control + export coordination. Specific physical facilities will be added as company development matures.
+                        </span>
+                    </div>
+                    <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">
+                        <span class="text-slate-400 block mb-1 uppercase">Primary Markets:</span>
+                        <span class="text-white">Europe (Initial focus: Germany & France)</span>
+                    </div>
+                    <div class="p-3 bg-[#161A1E] rounded border border-[#2D333B]">
+                        <span class="text-slate-400 block mb-1 uppercase">Primary Customers:</span>
+                        <span class="text-emerald-400 font-semibold">Textile manufacturers & Natural-fiber distributors</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Brand Pillars -->
+        <div class="border-t border-[#353B44] pt-16">
+            <h2 class="text-xs font-mono uppercase tracking-widest text-[#9AA0A6] mb-8">Non-Negotiable Standards</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+                <div class="p-6 bg-[#1E2328] rounded border border-[#353B44] space-y-3">
+                    <div class="text-emerald-400 font-mono text-xs font-bold uppercase">Pillar 1</div>
+                    <h4 class="text-base font-bold text-white">Trust — Non-Negotiable</h4>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        We do not publish laboratory-style specifications until product-specific testing has been completed. We do not describe supplier statements as independently verified facts.
+                    </p>
+                </div>
+                <div class="p-6 bg-[#1E2328] rounded border border-[#353B44] space-y-3">
+                    <div class="text-slate-200 font-mono text-xs font-bold uppercase">Pillar 2</div>
+                    <h4 class="text-base font-bold text-white">Premium Value</h4>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        We compete on value and reliability, not on claiming to be the cheapest supplier. Sourcing decisions prioritize quality consistency and repeatable execution.
+                    </p>
+                </div>
+                <div class="p-6 bg-[#1E2328] rounded border border-[#353B44] space-y-3">
+                    <div class="text-slate-300 font-mono text-xs font-bold uppercase">Pillar 3</div>
+                    <h4 class="text-base font-bold text-white">International Professionalism</h4>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        Clear B2B communication, disciplined export documentation, phytosanitary management, and reliable coordination from Indian mill gate to European port of discharge.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="border-t border-[#353B44] pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+                <h4 class="text-lg font-bold text-white">Interested in discussing sourcing requirements?</h4>
+                <p class="text-xs text-slate-400 font-mono">Connect directly with our export coordination desk.</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="{% url 'products:list' %}" class="px-6 py-3 rounded border border-[#4A5563] bg-[#1E2328] text-slate-200 hover:text-white text-xs uppercase tracking-wider font-semibold transition-colors">
+                    View Catalogue
+                </a>
+                <a href="{% url 'rfq:submit' %}" class="metallic-silver-btn px-6 py-3 rounded text-xs uppercase tracking-wider font-bold">
+                    Request Quote / Enquiry
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+'''
+
+with open('templates/pages/about.html', 'w', encoding='utf-8') as f:
+    f.write(about_content.strip() + '\n')
+print('about.html updated')
